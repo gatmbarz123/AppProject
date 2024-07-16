@@ -1,0 +1,45 @@
+---
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    container_name: app_web
+    restart: unless-stoppe
+    ports:
+      - "5000:5000"
+    links:
+      - db
+    depends_on:
+      - db
+    environment:
+      - DB_USER=root
+      - DB_PASSWORD=password
+      - DB_HOST=db
+      - DB_NAME=flask
+    volumes:
+      - ./web:/app
+
+
+
+  db:
+    build:
+      context: ./db
+      dockerfile: Dockerfile
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: flask
+      MYSQL_USER: flask
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./db/mysqld.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf
+    restart: unless-stoppe
+volumes:
+  mysql-data:
+    driver: loacl

@@ -50,6 +50,9 @@
         button:hover {
             background-color: #0056b3;
         }
+        .vote-counts {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -74,6 +77,12 @@
         </div>
         <button type="submit">Submit</button>
     </form>
+
+    <div class="vote-counts">
+        <h2>Vote Counts</h2>
+        <p>Bibi: {{ vote_counts['photo1.png'] }}</p>
+        <p>Ben Gvir: {{ vote_counts['photo2.png'] }}</p>
+    </div>
 </div>
 </body>
 </html>
