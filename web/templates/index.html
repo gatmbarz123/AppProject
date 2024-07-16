@@ -78,10 +78,15 @@
         <button type="submit">Submit</button>
     </form>
 
+
     <div class="vote-count">
         <h2>Vote Counts</h2>
-        <p>Bibi: {{ vote_count['photo1.png'] }}</p>
-        <p>Ben Gvir: {{ vote_count['photo2.png'] }}</p>
+        <p>Bibi: {{ vote_count['photo1.png'] if 'photo1.png' in vote_count else 0 }}</p>
+        <p>Ben Gvir: {{ vote_count['photo2.png'] if 'photo2.png' in vote_count else 0 }}</p>
+    </div>
+
+    <div>
+        <h3>Have a nice vote Sir</h3>
     </div>
 </div>
 </body>

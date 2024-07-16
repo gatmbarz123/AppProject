@@ -31,9 +31,10 @@ create_tables()
 @app.route('/')
 def index():
     vote_count = {
-        'Bibi': Person.query.filter_by(vote='Bibi').count(),
-        'Ben Gvir': Person.query.filter_by(vote='Ben Gvir').count(),
+        'photo1.png': Person.query.filter_by(vote='photo1.png').count(),
+        'photo2.png': Person.query.filter_by(vote='photo2.png').count(),
     }
+    print("Vote counts:", vote_count)
     return render_template('index.html', vote_count=vote_count)
 
 #this is the submit bottem for the web .
