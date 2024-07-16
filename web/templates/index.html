@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Selection</title>
+</head>
+<body>
+<h1>Which person You Love The Most?</h1>
+<form action="{{ url_for('submit') }}" method="post">
+    <div>
+        <input type="radio" id="BIBI" name="photo" value="photo1.png">
+        <label for="BIBI"><img src="{{ url_for('static', filename='images/photo1.png') }}" alt="Photo 1" style="width:200px;height:auto;"></label>
+    </div>
+    <div>
+        <input type="radio" id="BEN" name="photo" value="photo2.png">
+        <label for="BEN"><img src="{{ url_for('static', filename='images/photo2.png') }}" alt="Photo 2" style="width:200px;height:auto;"></label>
+    </div>
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>
