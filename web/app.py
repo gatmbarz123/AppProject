@@ -22,16 +22,19 @@ class Person(db.Model):
 
 #this make the table for the database
 def create_tables():
-    db.create_all()
+    with app.app_context():
+        db.create_all()
+
+create_tables()
 
 #this is the route that take the template and make it
 @app.route('/')
 def index():
     vote_count = {
-        'Bibi' : Person.query.filter_by(vote='Bibi').count(),
-        'Ben gvir' : Person.query.filter_by(vote='Ben gvir').count(),
+        'Bibi': Person.query.filter_by(vote='Bibi').count(),
+        'Ben Gvir': Person.query.filter_by(vote='Ben Gvir').count(),
     }
-    return render_template('index.html',vote_count=vote_count)
+    return render_template('index.html', vote_count=vote_count)
 
 #this is the submit bottem for the web .
 @app.route('/submit', methods=['POST'])
