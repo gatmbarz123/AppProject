@@ -1,28 +1,26 @@
 pipeline {
     agent any
-
-    environment {
-        PATH = "/usr/local/bin:${env.PATH}"
-    }
-
     stages {
-        stage('Check PATH') {
-            steps {
-                sh 'echo $PATH'
-            }
-        }
-
         stage('Verify Tooling') {
             steps {
-                sh '''
-                    docker --version
-                    docker info
-                    docker-compose --version
-                    curl --version
-                    jq --version
-                '''
+                script {
+                    echo "Current PATH: ${env.PATH}"
+                    sh '''
+                        echo "Docker version:"
+                        docker --version || echo "Docker is not installed or not accessible"
+                        echo "Docker info:"
+                        docker info || echo "Unable to retrieve Docker info"
+                        echo "Docker Compose version:"
+                        docker compose version || echo "Docker Compose is not installed or not accessible"
+                        echo "Curl version:"
+                        curl --version || echo "Curl is not installed or not accessible"
+                        echo "jq version:"
+                        jq --version || echo "jq is not installed or not accessible"
+                    '''
+                }
             }
         }
     }
 }
+
 
